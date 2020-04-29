@@ -1,9 +1,23 @@
 <?php
 
+session_start();
+
 require_once __DIR__ . '/mPDF/autoload.php';
 
 $mpdf = new \Mpdf\Mpdf();
-//$mpdf->WriteHTML('<h1>¡Hola, Mundo!</h1>');
+
+    include 'Cookies.php';
+    $cookies = new Cookies();
+    $username = $cookies->desencriptar($_SESSION['user_name'], 'k123');
+    $pelicula = $_SESSION['pelicula'];
+    $fecha = $_SESSION['fecha'];
+    $hora = $_SESSION['hora'];
+    echo "<span>Gracias por su compra, " . $username . ", le adjuntamos la información de sus entradas:</span><br><br>";
+
+    include 'ConexionBD.php';
+    $usuario = new ConexionBD($servidor, $usuario, $pass, $base_datos);
+    $usuario->query("SELECT * FROM butacasvendidas WHERE nom_usuario='$username' AND pelicula='$pelicula' AND fecha='$fecha' AND hora='$hora'");
+
 $mpdf->WriteHTML("<!DOCTYPE html>
 <html lang='es'>
 <head>
@@ -12,12 +26,20 @@ $mpdf->WriteHTML("<!DOCTYPE html>
     <title>Document</title>
     <style>
         h1{
-            color:red;
+            color:black;
         }
     </style>
 </head>
 <body>
-    <h1>Prueba de HTML dentro del PDF</h1>
-</body>
-</html>");
+    <h1>CONFIRMACIÓN</h1>");
+    $mpdf->WriteHTML("<span><b>".$username."</b></span><br><br>");
+    $mpdf->WriteHTML("<h1>".$pelicula."</h1>");
+    $mpdf->WriteHTML("<span>".$fecha."</span><span> - ".$hora."</span><br><br>");
+    $mpdf->WriteHTML("<table border=1>");
+    $mpdf->WriteHTML("<tr><td>Fila/Butaca</td><td>Tipo Entrada</td><td>Precio</td></tr>");
+    while ($row = $usuario->extraer_registro()) {
+            $mpdf->WriteHTML("<tr><td>". $row['butaca'] . "</td>");
+            $mpdf->WriteHTML("<td>Normal</td><td>8.00 €</td></tr>");
+    }
+$mpdf->WriteHTML("</table></body></html>");
 $mpdf->Output();
