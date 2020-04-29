@@ -1,0 +1,2 @@
+correo:  outcinema.recovery@gmail.com
+contra:  outcinema_pass
