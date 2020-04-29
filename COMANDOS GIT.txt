@@ -1,6 +1,6 @@
 git pull origin master		(Descarga en tu ordenador la última versión del proyecto, por si los demás hemos realizado cambios)
-git status 			(Muestra estado del proyecto)
-git add . 			(Agrega todo el proyecto al repositorio local, donde se actulizará con los cambios que hayas hecho)
+git status 			        (Muestra los cambios que se han realizado en el proyecto)
+git add . 			        (Agrega todo el proyecto al repositorio local, donde se actulizará con los cambios que hayas hecho)
 git commit -m "Mensaje"		(Confirma la actualización y escribes un mensaje breve donde digas los cambios que has hecho)
 git push origin master		(Sube el proyecto actualizado al repositorio online donde estamos los 3)
 

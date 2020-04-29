@@ -10,7 +10,8 @@
     $_SESSION['visitarVenta']++;
     if ($_SESSION['visitarVenta'] == 1) {
         echo "<script src='../src/utils/enviarDatos.js'></script>";
-        echo "<script>window.location.href='ventaButacas.php';</script>";
+        //echo "<script>window.location.href='ventaButacas.php';</script>";
+        echo "<script>window.location.reload();</script>";
     }
     ?>
 </head>
@@ -40,9 +41,10 @@
         echo "<td>" . $row['butaca'] . "</td>";
         echo "</tr>";
     }
-    echo "</table>";
+    echo "</table><br>";
     ?>
-    <br><a href='../index.php'>Volver al inicio</a>
+    <a href='imprimirPDF.php'>Ver entradas en PDF</a>
+    <br><br><a href='../index.php'>Volver al inicio</a>
 </body>
 
 </html>
