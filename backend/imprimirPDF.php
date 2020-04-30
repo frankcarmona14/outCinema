@@ -18,6 +18,22 @@ $mpdf = new \Mpdf\Mpdf();
     $usuario = new ConexionBD($servidor, $usuario, $pass, $base_datos);
     $usuario->query("SELECT * FROM butacasvendidas WHERE nom_usuario='$username' AND pelicula='$pelicula' AND fecha='$fecha' AND hora='$hora'");
 
+    //GENERAR CODIGO QR
+    $textqr = "ENTRADAS VENDIDAS"; //Recibo la variable pasada por post
+    $sizeqr = "200"; //Recibo la variable pasada por post
+    include 'mPDF/autoload.php'; //Llamare el autoload de la clase que genera el QR
+    use Endroid\QrCode\QrCode;
+    
+    $qrCode = new QrCode($textqr); //Creo una nueva instancia de la clase
+    $qrCode->setSize($sizeqr); //Establece el tamaño del qr
+    //header('Content-Type: '.$qrCode->getContentType());
+    $image = $qrCode->writeString(); //Salida en formato de texto
+    
+    $imageData = base64_encode($image); //Codifico la imagen usando base64_encode
+    
+    //echo '<img src="data:image/png;base64,' . $imageData . '">';
+
+
 $mpdf->WriteHTML("<!DOCTYPE html>
 <html lang='es'>
 <head>
@@ -32,6 +48,7 @@ $mpdf->WriteHTML("<!DOCTYPE html>
 </head>
 <body>
     <h1>CONFIRMACIÓN</h1>");
+    $mpdf->WriteHTML("<img src='data:image/png;base64,$imageData'><br><br>");
     $mpdf->WriteHTML("<span><b>".$username."</b></span><br><br>");
     $mpdf->WriteHTML("<h1>".$pelicula."</h1>");
     $mpdf->WriteHTML("<span>".$fecha."</span><span> - ".$hora."</span><br><br>");
