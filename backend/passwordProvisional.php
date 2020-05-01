@@ -1,25 +1,35 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../forms/style.css">
     <title>Document</title>
 </head>
 
 <body>
+    <div class="form__login">
+        <div class="form-container">
+            <div class="loginEmail">
+                <h2>Cambio de Contraseña</h2><br>
+                <?php
+                session_start();
+                //Estar aquí significa que ya hemos enviado un correo con un código de acceso, el cual le dará permiso para cambiar la contraseña.
+                echo "<p class=formInput-error>Hemos enviado un código de acceso privisional al correo <b>" . $_SESSION['user_email'] . "</b><br>Introduzca ese código para poder cambiar su contraseña.</p>";
+                ?>
 
-    <h1>Cambio de Contraseña</h1>
-    <?php
-    session_start();
-    //Estar aquí significa que ya hemos enviado un correo con un código de acceso, el cual le dará permiso para cambiar la contraseña.
-    echo "<p>Hemos enviado un código de acceso privisional al correo <b>" . $_SESSION['user_email'] . "</b><br>Introduzca ese código para poder cambiar su contraseña.</p>";
-    ?>
-
-    <form action='passwordProvisional.php' method='POST'>
-        <span>Código: </span><input type='text' name='codigo'>
-        <input type='submit' name='enviarCodigo' value='Enviar Código'>
-    </form><br>
-    <a href='../recuperacion.php'>¿No has recibido ningún correo? ¡Vuelve a intentarlo!</a>
+                <form action='passwordProvisional.php' method='POST'>
+                    <div class="formInput">
+                        <input type="text" name="codigo" placeholder="Tu código" required="required" class="formInput-field" />
+                        <p class="formInput-error" id=""></p>
+                    </div>
+                    <input type='submit' class="btn btn-green" name='enviarCodigo' value='Enviar Código'>
+                </form><br>
+                <a href='../recuperacion.php'>¿No has recibido ningún correo? ¡Vuelve a intentarlo!</a>
+            </div>
+        </div>
+    </div>
 
     <?php
     if (isset($_POST['enviarCodigo'])) {

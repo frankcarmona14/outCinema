@@ -4,23 +4,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../forms/style.css">
     <title>Validación de Cuenta</title>
 </head>
 
 <body>
-    <h1>Validación de Cuenta</h1>
-    <?php
-    session_start();
-    //Estar aquí significa que ya hemos enviado un correo con un código de validación, el cual confirmará el registro del usuario.
-    echo "<p>¡Ya casi terminamos de crear tu cuenta!<br>Hemos enviado un código de validación al correo <b>" . $_SESSION['user_email'] . "</b><br>Introduzca ese código para poder validar su cuenta.</p>";
-    ?>
+    <div class="form__login">
+        <div class="form-container">
+            <div class="loginEmail">
+                <h2>Validación de Cuenta</h2>
+                <?php
+                session_start();
+                // Estar aquí significa que ya hemos enviado un correo con un código de validación, el cual confirmará el registro del usuario.
+                echo "<p>¡Ya casi terminamos de crear tu cuenta!<br>Hemos enviado un código de validación al correo <b>" . $_SESSION['user_email'] . "</b><br>Introduzca ese código para poder validar su cuenta.</p>";
+                ?>
 
-    <form action='validarConfirmacion.php' method='POST'>
-        <span>Código: </span><input type='text' name='codigo'>
-        <input type='submit' name='enviarCodigo' value='Enviar Código'>
-    </form><br>
-    <a href='../registro.php'>¿No has recibido ningún correo? ¡Vuelve a intentarlo!</a>
-
+                <form action='validarConfirmacion.php' method='POST'>
+                    <br>
+                    <div class="formInput">
+                        <input type="text" name="codigo" placeholder="Tu código" required="required" class="formInput-field" />
+                        <p class="formInput-error" id=""></p>
+                    </div>
+                    <input type='submit' class="btn btn-green" name='enviarCodigo' value='Enviar Código'>
+                </form><br>
+                <a href='../registro.php'>¿No has recibido ningún correo? ¡Vuelve a intentarlo!</a>
+            </div>
+        </div>
+    </div>
     <?php
     if (isset($_POST['enviarCodigo'])) {
         if ($_POST['codigo'] == $_SESSION['codigoRandom']) { //Se valida que el código que el usuario introduzca, sea el mismo que le enviamos al correo.

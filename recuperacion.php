@@ -4,17 +4,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="forms/style.css" />
     <title>Recuperación de Contraseña</title>
 </head>
 
 <body>
-    <form action='recuperacion.php' method='POST'>
-        <span>Introduzca el correo electrónico con el que se registró en la app: </span>
-        <input type='text' name='email'>
-        <input type='submit' name='Enviar' value='Enviar'>
-    </form><br>
-    <a href='login.php'>Iniciar Sesión</a><br>
-    <a href='registro.php'>¿No tienes cuenta? ¡Regístrate!</a>
+    <div class="form__login">
+        <div class="form-container">
+            <div class="loginEmail">
+                <form action='recuperacion.php' method='POST'>
+                    <div class="formInput">
+                        <span>Introduzca el correo electrónico con el que se registró en la app: </span><br><br>
+                        <input type="email" name="email" id="email" placeholder="Tu email" required="required" class="formInput-field" />
+                        <p class="formInput-error" id="emailE"></p>
+                    </div>
+                    <input type='submit' class="btn btn-green" name='Enviar' value='Enviar'>
+                </form><br>
+                <a href='login.php'>Iniciar Sesión</a><br>
+            </div>
+            <div class="accountFooter">
+                <span>¿Aún no tienes una cuenta?</span>
+                <div class="accountFooter-link">
+                    <a href="registro.php"><button class="btn btn-account">Regístrate</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 <?php
