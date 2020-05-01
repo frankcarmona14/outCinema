@@ -30,6 +30,7 @@
     <?php
     session_start();
     $_SESSION['elegirButacas']++;
+    $_SESSION['visitarVenta'] = 0;
     //echo $_SESSION['elegirButacas'];
 
     $numEntradas = $_COOKIE['numEntradas'];

@@ -36,26 +36,30 @@
 if (isset($_POST['Enviar'])) {
 
     session_start();
+    require_once 'backend/ConnectionDB.php';
 
     $email = $_POST['email'];
-    include 'backend/ConexionBD.php';
-    $usuario = new ConexionBD($servidor, $usuario, $pass, $base_datos);
-    $usuario->query("SELECT * FROM usuario;");
+
     $comprobante = false;
-    while ($row = $usuario->extraer_registro()) {
-        if ($email == $row['email']) { //Se comprueba que el corre introducido corresponda a un usuario de la aplicación.
 
-            include 'backend/GenerarCodigo.php';
-            $codigoRandom = new CodigoRandom();
+    $query = $pdo->prepare("SELECT * FROM usuario;");
+    $query->execute();
+    $results = $query->fetchAll(PDO::FETCH_OBJ);
+    if ($query->rowCount() > 0) {
+        foreach ($results as $result) {
+            if ($result->email == $email) {
+                require_once 'backend/GenerarCodigo.php';
+                $codigoRandom = new CodigoRandom();
 
-            $_SESSION['user_email'] = $email; //Se guarda el correo en sesión
-            $_SESSION['codigoRandom'] = $codigoRandom->generarCodigoRandom(); //Y también la cadena de caracteres generada como código de acceso.
+                $_SESSION['user_email'] = $email; //Se guarda el correo en sesión
+                $_SESSION['codigoRandom'] = $codigoRandom->generarCodigoRandom(); //Y también la cadena de caracteres generada como código de acceso.
 
-            $comprobante = true;
-            break;
+                $comprobante = true;
+            }
         }
     }
-    if ($comprobante) {
+
+    if ($comprobante == true) {
         header("Location: backend/enviarCorreo.php?motivo=cambiarPassword"); //Si el correo existe, redireccionamos.
     } else { //Si no, tiene que introducir uno válido.
         echo "<script>alert('El correo introducido no está asociado a ninguna cuenta en OutCinema. Por favor, introduzca un correo válido.');</script>";

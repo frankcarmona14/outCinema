@@ -19,12 +19,42 @@
   if (!isset($_SESSION['dentro'])) {
     if (isset($_COOKIE['Email']) && isset($_COOKIE['Password'])) { //Si existen esos datos en cookies, es porque el usuario ya ha aceptado gurdarlos,
       //Por lo tanto, hacemos la validación Log-in automáticamente, sin que el usuario
-      include 'backend/Cookies.php';                                     //introduzca los datos. Recogemos los datos desde cookies, no desde formulario.
+      require_once 'backend/Cookies.php'; //introduzca los datos. Recogemos los datos desde cookies, no desde formulario.
       $cookies = new Cookies();
       $email  = $cookies->desencriptar($_COOKIE['Email'], 'k123'); //Las cookies se almacenan encriptadas, por lo cual, es necesario desencriptarlas
       $password = $cookies->desencriptar($_COOKIE['Password'], 'k123'); //Para poder hacer una validación comparando con los datos de la BD.
 
-      include 'backend/ConexionBD.php';
+      require_once 'backend/ConnectionDB.php';
+
+      $query = $pdo->prepare("SELECT * FROM usuario;");
+      $query->execute();
+      $results = $query->fetchAll(PDO::FETCH_OBJ);
+      if ($query->rowCount() > 0) {
+        foreach ($results as $result) {
+          if ($result->email == $email && password_verify($password, $result->password)) {
+
+            $encript_email = $cookies->encriptar($email, 'k123'); //k123 es la key de encriptación.
+            $encript_pass = $cookies->encriptar($password, 'k123'); //Se actualiza la encriptación de las cookies, para más seguridad.
+            setcookie("Email", $encript_email, time() + (86400 * 30), "/");    //Se actualiza la fecha de expiración de las cookies, 
+            setcookie("Password", $encript_pass, time() + (86400 * 30), "/");  //se le da otro mes de vida desde este momento.
+
+            if ($result->admin == 1) { //Si el usuario es adiministrador, se crea ese identificador en Session, y una vez dentro, la app reconocerá-
+              $_SESSION['admin'] = true;
+            }
+
+            $_SESSION['user_id'] = $cookies->encriptar($result->id_usuario, 'k123');
+            $_SESSION['user_name'] = $cookies->encriptar($result->nombre, 'k123');
+            $_SESSION['user_email'] = $cookies->encriptar($result->email, 'k123');
+
+            $_SESSION['dentro'] = true;
+            header("Location: index.php");
+          }
+        }
+      }
+
+
+
+      /* include 'backend/ConexionBD.php';
       $usuario = new ConexionBD($servidor, $usuario, $pass, $base_datos);
       $usuario->query("SELECT * FROM usuario;");
       while ($row = $usuario->extraer_registro()) {
@@ -47,6 +77,8 @@
           header("Location: index.php");
         }
       }
+
+      */
     }
   } else {
     if (!isset($_COOKIE['Email']) || !isset($_COOKIE['Password'])) {
