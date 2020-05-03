@@ -12,10 +12,11 @@ $username = $cookies->desencriptar($_SESSION['user_name'], 'k123');
 $pelicula = $_SESSION['pelicula'];
 $fecha = $_SESSION['fecha'];
 $hora = $_SESSION['hora'];
+$id_transaccion = $_SESSION['id_transaccion'];
 echo "<span>Gracias por su compra, " . $username . ", le adjuntamos la información de sus entradas:</span><br><br>";
 
 require_once 'ConnectionDB.php';
-$query = $pdo->prepare("SELECT * FROM butacasvendidas WHERE nom_usuario='$username' AND pelicula='$pelicula' AND fecha='$fecha' AND hora='$hora';");
+$query = $pdo->prepare("SELECT * FROM butacasvendidas WHERE id_transaccion='$id_transaccion' AND nom_usuario='$username' AND pelicula='$pelicula' AND fecha='$fecha' AND hora='$hora';");
 $query->execute();
 
 $mpdf->WriteHTML("<!DOCTYPE html>
@@ -41,7 +42,8 @@ $results = $query->fetchAll(PDO::FETCH_OBJ);
 if ($query->rowCount() > 0) {
     foreach ($results as $result) {
         $mpdf->WriteHTML("<tr><td>" . $result->butaca . "</td>");
-        $mpdf->WriteHTML("<td>Normal</td><td>8.00 €</td></tr>");
+        $mpdf->WriteHTML("<td>" . $result->tipo_entrada . "</td>");
+        $mpdf->WriteHTML("<td>" . $result->precio . ".00€</td><tr>");
     }
 }
 $mpdf->WriteHTML("</table></body></html>");

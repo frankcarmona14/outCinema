@@ -38,10 +38,6 @@
             setcookie("Email", $encript_email, time() + (86400 * 30), "/");    //Se actualiza la fecha de expiración de las cookies, 
             setcookie("Password", $encript_pass, time() + (86400 * 30), "/");  //se le da otro mes de vida desde este momento.
 
-            if ($result->admin == 1) { //Si el usuario es adiministrador, se crea ese identificador en Session, y una vez dentro, la app reconocerá-
-              $_SESSION['admin'] = true;
-            }
-
             $_SESSION['user_id'] = $cookies->encriptar($result->id_usuario, 'k123');
             $_SESSION['user_name'] = $cookies->encriptar($result->nombre, 'k123');
             $_SESSION['user_email'] = $cookies->encriptar($result->email, 'k123');
@@ -51,34 +47,6 @@
           }
         }
       }
-
-
-
-      /* include 'backend/ConexionBD.php';
-      $usuario = new ConexionBD($servidor, $usuario, $pass, $base_datos);
-      $usuario->query("SELECT * FROM usuario;");
-      while ($row = $usuario->extraer_registro()) {
-        if ($email == $row['email'] && password_verify($password, $row['password'])) { //La contraseña es el único campo encriptado en la BD, así que se desencripta y se compara
-          //si algun registro de la BD coincide en E-mail y en Password.
-          $encript_email = $cookies->encriptar($email, 'k123'); //k123 es la key de encriptación.
-          $encript_pass = $cookies->encriptar($password, 'k123'); //Se actualiza la encriptación de las cookies, para más seguridad.
-          setcookie("Email", $encript_email, time() + (86400 * 30), "/");    //Se actualiza la fecha de expiración de las cookies, 
-          setcookie("Password", $encript_pass, time() + (86400 * 30), "/");  //se le da otro mes de vida desde este momento.
-
-          if ($row['admin'] == 1) { //Si el usuario es adiministrador, se crea ese identificador en Session, y una vez dentro, la app reconocerá que se trata de un admin.
-            $_SESSION['admin'] = true;
-          }
-
-          $_SESSION['user_id'] = $cookies->encriptar($row['id_usuario'], 'k123');
-          $_SESSION['user_name'] = $cookies->encriptar($row['nombre'], 'k123');
-          $_SESSION['user_email'] = $cookies->encriptar($row['email'], 'k123');
-
-          $_SESSION['dentro'] = true;
-          header("Location: index.php");
-        }
-      }
-
-      */
     }
   } else {
     if (!isset($_COOKIE['Email']) || !isset($_COOKIE['Password'])) {
