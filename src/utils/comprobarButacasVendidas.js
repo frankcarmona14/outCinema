@@ -48,6 +48,7 @@
         var f_vendida;
         var b_vendida;
         vendidas = JSON.parse(localStorage.getItem("vendidas"));
+        
         for (var i in vendidas) {
 
             f_vendida = vendidas[i].butacaVendida.substr(0, 3);
