@@ -73,46 +73,27 @@ async function mostrarElementos() {
     let horarioDias = document.getElementsByClassName("horario_dia")[0]
       .children;
 
-    let dias = new Array("dom", "lun", "mar", "mier", "jue", "vie", "sab");
-    let meses = new Array(
-      "enero",
-      "febre",
-      "marzo",
-      "abril",
-      "mayo",
-      "junio",
-      "julio",
-      "agosto",
-      "septi",
-      "octub",
-      "noviem",
-      "diciem"
-    );
-
-    let fecha = new Date();
+    moment.locale("es");
+    let mes;
 
     for (let i = 0; i < horarioDias.length; i++) {
-      if (fecha.getDay() + i !== 7) {
-        horarioDias[i].innerHTML = `<span>${
-        dias[fecha.getDay() + i]
-      }</span><span>${
-        fecha.getDate() + i
-      } <span>${meses[fecha.getMonth()]} </span></span>`;
-      } else {
-        horarioDias[i].innerHTML = `<span>dom</span><span>${
-          fecha.getDate() + i
-        } <span>${meses[fecha.getMonth()]} </span></span>`;
-      }
+      let fecha = moment();
+      
     }
   }
 
   ponerFechas();
 
   itemsDia.forEach((item) => {
-
     let seleccion = document.querySelectorAll(".selected")[0];
     let anio = new Date();
-    document.cookie = `fecha=${seleccion.children[0].textContent + ' ' + seleccion.children[1].textContent + ' ' + anio.getFullYear()}`;
+    document.cookie = `fecha=${
+      seleccion.children[0].textContent +
+      " " +
+      seleccion.children[1].textContent +
+      " " +
+      anio.getFullYear()
+    }`;
 
     item.addEventListener("click", (ev) => {
       document.cookie = "dia=''; max-age=0";
@@ -122,7 +103,13 @@ async function mostrarElementos() {
       item.classList.toggle("selected");
       let seleccion = document.querySelectorAll(".selected")[0];
       let anio = new Date();
-      document.cookie = `fecha=${seleccion.children[0].textContent + ' ' + seleccion.children[1].textContent + ' ' + anio.getFullYear()}`;
+      document.cookie = `fecha=${
+        seleccion.children[0].textContent +
+        " " +
+        seleccion.children[1].textContent +
+        " " +
+        anio.getFullYear()
+      }`;
       //console.log(seleccion.children[0].textContent);
       //document.cookie = `fecha=${seleccion.children[0].children[1].textContent}`;
     });
@@ -136,7 +123,10 @@ async function mostrarElementos() {
       item.classList.toggle("selected");
       let seleccion = document.querySelectorAll(".selected")[1];
       document.cookie = `hora=${seleccion.children[0].textContent}`;
-      document.getElementById('btnContinuar').href = sessionStorage.getItem('dentro') == 1 ? 'elegirButacas.php' : 'login.php';
+      document.getElementById("btnContinuar").href =
+        sessionStorage.getItem("dentro") == 1
+          ? "elegirButacas.php"
+          : "login.php";
     });
   });
 
@@ -147,7 +137,7 @@ async function mostrarElementos() {
   document.cookie = `numEntradas=${total.textContent}`;
 
   let precioTotal = 8;
-  let mostrarPrecio = document.getElementById('precioTotal');
+  let mostrarPrecio = document.getElementById("precioTotal");
   mostrarPrecio.textContent = precioTotal + ",00€";
 
   add.addEventListener("click", () => {

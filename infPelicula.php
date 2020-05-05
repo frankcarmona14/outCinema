@@ -115,6 +115,7 @@
     </div>
   </footer>
   <script src="src/utils/Navbar.js"></script>
+  <script src="src/utils/moment.min.js"></script>
   <script type="module" src="src/pages/Pelicula.js"></script>
 </body>
 
