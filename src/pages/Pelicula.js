@@ -74,11 +74,16 @@ async function mostrarElementos() {
       .children;
 
     moment.locale("es");
-    let mes;
+
+    let fecha = moment();
 
     for (let i = 0; i < horarioDias.length; i++) {
-      let fecha = moment();
-      
+      horarioDias[i].innerHTML = `<span>${fecha.format(
+        "ddd"
+      ).slice(0,-1)}</span><span>${fecha.format("D")} <span>${fecha.format(
+        "MMM"
+      ).slice(0, -1)}</span></span>`;
+      fecha.add("1", "days");
     }
   }
 
