@@ -63,9 +63,7 @@
                 <span>Seleccionadas: </span><img src='src/img/butacaSeleccionada.png' id='estadoButaca'>
             </div><br>
             <?php
-            include "backend/imprimirButacas.php";
-            $imprimirButacas = new GenerarButacas();
-            $imprimirButacas->imprimirButacas();
+            require "backend/imprimirButacas.php";
             ?>
             <hr>
             <span>PANTALLA</span>

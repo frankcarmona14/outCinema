@@ -13,6 +13,13 @@ $results = $query->fetchAll(PDO::FETCH_OBJ);
 if ($query->rowCount() > 0) {
     foreach ($results as $result) {
         if ($result->email == $email && password_verify($password, $result->password)) {
+
+            if ($result->admin == 1) {
+                $_SESSION['admin'] = true;
+            } else {
+                $_SESSION['admin'] = false;
+            }
+
             $_SESSION["email"] = $email;
             $_SESSION["password"] = $password; //Se guardan estos datos en session, para posteriormente guardarlos en Cookies (SÓLO SI EL USUARIO ACEPTA).
 
@@ -29,6 +36,6 @@ if ($query->rowCount() > 0) {
             echo "<script>alert('Correo o contraseña incorrectos.'); window.location.href='../login.php';</script>";
         }
     }
-}else{
+} else {
     echo "<script>alert('Necesita crear una cuenta para poder iniciar sesion.'); window.location.href='../registro.php';</script>";
 }

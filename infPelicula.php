@@ -50,7 +50,14 @@
           }
           ?>
         </li>
-        <li><a href="index.php" class="active">Cartelera</a></li>
+        <?php
+        if (isset($_SESSION['admin']) && $_SESSION['admin'] == true) {
+        ?>
+          <li><a href="panelAdministrativo.php">Panel Administrativo</a></li>
+        <?php
+        }
+        ?>
+        <li><a href="index.php">Cartelera</a></li>
         <li><a href="#">Estrenos</a></li>
         <li><a href="#">Proximamente</a></li>
         <li><a href="#">Promos</a></li>
@@ -88,17 +95,23 @@
         <div class="hora_item"><span>22:30</span></div>
       </div>
       <h3>Seleccione el número de entradas</h3>
-      <span>Maximo 9 entradas por transacción.</span>
+      <span>(Máximo <b>9</b> entradas por transacción)</span>
       <div class="horario_entradas">
-        <div>Entrada general</div>
+        <div>Tipo de Entrada:</div>
+        <div>
+          <select id='tipoEntrada'>
+            <option id='general' selected>Entrada general</option>
+            <option id='reducida'>Entrada reducida</option>
+          </select>
+        </div>
         <div class="entrada_datos">
-          <div>8,00€ c/u</div>
+          <div id='precioMostrado'></div>
           <div class="cantidad" id="add">+</div>
           <div class="cantidad" id="drop">-</div>
           <div class="total" id="total"></div>
         </div>
       </div>
-      <div>Precio total: </div>
+      <div>Importe total: </div>
       <div class="total" id="precioTotal"></div>
       <a class="btn btn-continuar" id='btnContinuar'>Continuar</a>
     </section>
@@ -117,6 +130,7 @@
   <script src="src/utils/Navbar.js"></script>
   <script src="src/utils/moment.min.js"></script>
   <script type="module" src="src/pages/Pelicula.js"></script>
+  <script src="src/utils/mostrarPrecio.js"></script>
 </body>
 
 </html>

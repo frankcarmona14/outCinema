@@ -129,40 +129,11 @@ async function mostrarElementos() {
       let seleccion = document.querySelectorAll(".selected")[1];
       document.cookie = `hora=${seleccion.children[0].textContent}`;
       document.getElementById("btnContinuar").href =
-        sessionStorage.getItem("dentro") == 1
-          ? "elegirButacas.php"
-          : "login.php";
+        sessionStorage.getItem("dentro") == 1 ?
+        "elegirButacas.php" :
+        "login.php";
     });
   });
-
-  const add = document.getElementById("add");
-  const drop = document.getElementById("drop");
-  let total = document.getElementById("total");
-  total.textContent = 1;
-  document.cookie = `numEntradas=${total.textContent}`;
-
-  let precioTotal = 8;
-  let mostrarPrecio = document.getElementById("precioTotal");
-  mostrarPrecio.textContent = precioTotal + ",00€";
-
-  add.addEventListener("click", () => {
-    if (total.textContent < 9) {
-      total.textContent++;
-      document.cookie = `numEntradas=${total.textContent}`;
-      precioTotal += 8;
-      mostrarPrecio.textContent = precioTotal + ",00€";
-    }
-  });
-
-  drop.addEventListener("click", () => {
-    if (total.textContent > 1) {
-      total.textContent--;
-      document.cookie = `numEntradas=${total.textContent}`;
-      precioTotal -= 8;
-      mostrarPrecio.textContent = precioTotal + ",00€";
-    }
-  });
 }
-
 //insertar evento
 window.addEventListener("DOMContentLoaded", mostrarElementos);

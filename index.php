@@ -15,7 +15,6 @@
 <body>
   <?php
   session_start();
-  $_SESSION['admin'] = false;
   if (!isset($_SESSION['dentro'])) {
     if (isset($_COOKIE['Email']) && isset($_COOKIE['Password'])) { //Si existen esos datos en cookies, es porque el usuario ya ha aceptado gurdarlos,
       //Por lo tanto, hacemos la validación Log-in automáticamente, sin que el usuario
@@ -32,6 +31,12 @@
       if ($query->rowCount() > 0) {
         foreach ($results as $result) {
           if ($result->email == $email && password_verify($password, $result->password)) {
+
+            if ($result->admin == 1) {
+              $_SESSION['admin'] = true;
+            } else {
+              $_SESSION['admin'] = false;
+            }
 
             $encript_email = $cookies->encriptar($email, 'k123'); //k123 es la key de encriptación.
             $encript_pass = $cookies->encriptar($password, 'k123'); //Se actualiza la encriptación de las cookies, para más seguridad.
@@ -92,6 +97,13 @@
           }
           ?>
         </li>
+        <?php
+        if (isset($_SESSION['admin']) && $_SESSION['admin'] == true) {
+        ?>
+          <li><a href="panelAdministrativo.php">Panel Administrativo</a></li>
+        <?php
+        }
+        ?>
         <li><a href="index.php" class="active">Cartelera</a></li>
         <li><a href="#">Estrenos</a></li>
         <li><a href="#">Proximamente</a></li>
