@@ -14,11 +14,16 @@ $pelicula = $_POST['pelicula'];
 $fecha = $_POST['fecha'];
 $hora = $_POST['hora'];
 $butacas = $_POST['butaca'];
+$tipoEntrada = $_POST['tipoEntrada'];
+$precioAsignado = $_POST['precioAsignado'];
+
 
 $_SESSION['id_transaccion'] = $id_transaccion;
 $_SESSION['pelicula'] = $pelicula;
 $_SESSION['fecha'] = $fecha;
 $_SESSION['hora'] = $hora;
+$_SESSION['tipoEntrada'] = $tipoEntrada;
+$_SESSION['precioAsignado'] = $precioAsignado;
 
 
 require_once 'ConnectionDB.php';
@@ -27,13 +32,15 @@ $datosButacaVendida = [
     'user_id' => $user_id,
     'user_name' => $user_name,
     'user_email' => $user_email,
+    'tipo_entrada' => $tipoEntrada,
+    'precio' => $precioAsignado,
     'pelicula' => $pelicula,
     'fecha' => $fecha,
     'hora' => $hora,
     'butacas' => $butacas,
 ];
 //$consulta = "INSERT INTO usuario (nombre, num_tel, email, password) VALUES(:nombre, :num_tel, :email, :password);";
-$consulta = "INSERT INTO butacasvendidas(id_transaccion, id_usuario, nom_usuario, email_usuario, pelicula, fecha, hora, butaca) VALUES(:id_transaccion, :user_id, :user_name, :user_email, :pelicula, :fecha, :hora, :butacas);";
+$consulta = "INSERT INTO butacasvendidas(id_transaccion, id_usuario, nom_usuario, email_usuario, tipo_entrada, precio, pelicula, fecha, hora, butaca) VALUES(:id_transaccion, :user_id, :user_name, :user_email, :tipo_entrada, :precio, :pelicula, :fecha, :hora, :butacas);";
 
 $registro = $pdo->prepare($consulta);
 $registro->execute($datosButacaVendida);

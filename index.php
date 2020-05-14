@@ -34,6 +34,7 @@
 
             if ($result->admin == 1) {
               $_SESSION['admin'] = true;
+              setcookie("admin", true, time() + (86400 * 30), "/");
             } else {
               $_SESSION['admin'] = false;
             }

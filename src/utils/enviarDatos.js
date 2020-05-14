@@ -13,6 +13,8 @@ function enviarDatosVenta() {
         const pelicula = sessionStorage.getItem("peli");
         const fecha = sessionStorage.getItem("fecha");
         const hora = sessionStorage.getItem("hora");
+        const tipoEntrada = sessionStorage.getItem("tipoEntrada");
+        const precioAsignado = sessionStorage.getItem("precioAsignado");
         const butacaSeleccionada = sessionStorage.getItem(("butacaSeleccionada" + i));
 
         datosVenta.append('pelicula', pelicula);
@@ -20,6 +22,8 @@ function enviarDatosVenta() {
         datosVenta.append('hora', hora);
         datosVenta.append('butaca', butacaSeleccionada);
         datosVenta.append('id_transaccion', idTransaccion);
+        datosVenta.append('tipoEntrada', tipoEntrada);
+        datosVenta.append('precioAsignado', precioAsignado);
 
         fetch('backend/regButacasVendidas.php', {
                 method: 'POST',

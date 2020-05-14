@@ -21,10 +21,10 @@ CREATE TABLE precios(
 CREATE TABLE butacasVendidas(
     id int(12) PRIMARY KEY AUTO_INCREMENT,
     id_transaccion VARCHAR(10),
-    id_usuario INT(6) REFERENCES usuario(id_usuario),
+    id_usuario INT(10) REFERENCES usuario(id_usuario),
     nom_usuario VARCHAR(120) REFERENCES usuario(nombre),
     email_usuario VARCHAR(210) REFERENCES usuario(email),
-    tipo_entrada VARCHAR(10) REFERENCES precios(tipo),
+    tipo_entrada VARCHAR(20) REFERENCES precios(tipo),
     precio DECIMAL(4,2) REFERENCES precios(precio),
     pelicula VARCHAR (260), 
     fecha VARCHAR(30),

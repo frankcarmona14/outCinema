@@ -18,11 +18,15 @@ async function mostrarPrecio() {
     let entradaSelec = tipoEntrada.options[tipoEntrada.selectedIndex].textContent;
     precioAsignado = await leerPrecioAsignado(entradaSelec);
 
+    sessionStorage.setItem('tipoEntrada', entradaSelec);
+    sessionStorage.setItem('precioAsignado', precioAsignado);
+
     precioMostrado.textContent = precioAsignado + "€ c/u";
     precioTotal.textContent = (precioAsignado * totalEntradas).toFixed(2) + "€";
 
     console.log("Entrada seleccionada: " + entradaSelec);
     console.log("Precio asignado en la BD: " + precioAsignado);
+
 }
 
 add.addEventListener("click", function () {

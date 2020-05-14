@@ -31,8 +31,6 @@
     session_start();
     $_SESSION['elegirButacas']++;
     $_SESSION['visitarVenta'] = 0;
-    //echo $_SESSION['elegirButacas'];
-
     $numEntradas = $_COOKIE['numEntradas'];
     $peli = $_COOKIE['pelicula'];
     $fecha = $_COOKIE['fecha'];
@@ -42,7 +40,6 @@
     echo "sessionStorage.setItem('peli', '$peli');";
     echo "sessionStorage.setItem('fecha', '$fecha');";
     echo "sessionStorage.setItem('hora', '$hora');";
-    echo "sessionStorage.setItem('registros', '0');";
     echo "</script>";
     ?>
 </head>
@@ -82,4 +79,5 @@
     }
     ?>
 </body>
+
 </html>
