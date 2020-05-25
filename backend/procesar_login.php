@@ -27,7 +27,7 @@ if ($query->rowCount() > 0) {
             include 'Cookies.php';
             $cookies = new Cookies();
 
-            $_SESSION['user_id'] = $cookies->encriptar($resulto->id_usuario, 'k123');
+            $_SESSION['user_id'] = $cookies->encriptar($result->id_usuario, 'k123');
             $_SESSION['user_name'] = $cookies->encriptar($result->nombre, 'k123');
             $_SESSION['user_email'] = $cookies->encriptar($result->email, 'k123');
 

@@ -11,7 +11,7 @@
         }
 
         .opcion {
-            width: 300px;
+            width: 270px;
             height: 200px;
             background-color: #eee;
             display: inline-block;
@@ -19,7 +19,7 @@
 
         .scan {
             width: 400px;
-            height: 250px;
+            height: 200px;
             background-color: lightgreen;
         }
     </style>
@@ -34,7 +34,10 @@
             </button>
             <div class='opciones'>
                 <button type='submit' name='opcion' value='cambiarPrecios' class='opcion'>
-                    <h2>Cambiar Precios</h2>
+                    <h2>Gestionar Entradas y Precios</h2>
+                </button>
+                <button type='submit' name='opcion' value='agregarTipoEntrada' class='opcion'>
+                    <h2>Agregar nuevo tipo de Entrada</h2>
                 </button>
                 <button type='submit' name='opcion' value='gestionarUsuarios' class='opcion'>
                     <h2>Gestionar Usuarios</h2>
@@ -42,8 +45,12 @@
                 <button type='submit' name='opcion' value='gestionarAdministradores' class='opcion'>
                     <h2>Gestionar Administradores</h2>
                 </button>
+                <button type='submit' name='opcion' value='agregarAdministrador' class='opcion'>
+                    <h2>Agregar Nuevo Administrador</h2>
+                </button>
             </div>
         </form>
+        <br><a href='index.php'>Volver al inicio</a>
     </center>
 
     <?php
@@ -61,10 +68,15 @@
             case "gestionarAdministradores":
                 header("Location: backend/gestionarAdmins.php");
                 break;
+            case "agregarAdministrador":
+                header("Location: backend/agregarAdministrador.php");
+                break;
+            case "agregarTipoEntrada":
+                header("Location: backend/agregarTipoEntrada.php");
+                break;
         }
     }
     ?>
-
 
 </body>
 

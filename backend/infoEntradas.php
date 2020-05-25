@@ -23,11 +23,13 @@
             include 'Cookies.php';
             $cookies = new Cookies();
             $username = $cookies->desencriptar($_SESSION['user_name'], 'k123');
+            $user_id = $cookies->desencriptar($_SESSION['user_id'], 'k123');
             $id_transaccion = $_SESSION['id_transaccion'];
             $pelicula = $_SESSION['pelicula'];
             $fecha = $_SESSION['fecha'];
             $hora = $_SESSION['hora'];
             echo "<span>Gracias por su compra, " . $username . ", le adjuntamos la información de sus entradas:</span><br><br>";
+            echo "user_id: $user_id";
 
             require_once 'ConnectionDB.php';
 
@@ -52,6 +54,7 @@
             $textqr = "https://192.168.1.35/outCinema/backend/escanearEntradas.php?id=$id_transaccion";
             $sizeqr = "200";
             include 'vendor/autoload.php';
+
             use Endroid\QrCode\QrCode;
 
             $qrCode = new QrCode($textqr);

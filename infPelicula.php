@@ -100,8 +100,6 @@
         <div>Tipo de Entrada:</div>
         <div>
           <select id='tipoEntrada'>
-            <option id='general' selected>Entrada general</option>
-            <option id='reducida'>Entrada reducida</option>
           </select>
         </div>
         <div class="entrada_datos">

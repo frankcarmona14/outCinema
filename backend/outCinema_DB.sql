@@ -14,7 +14,7 @@ CREATE TABLE usuario(
  ); 
 
 CREATE TABLE precios(
-    tipo VARCHAR(16) PRIMARY KEY,
+    tipo VARCHAR(30) PRIMARY KEY,
     precio DECIMAL(4,2)
 );
 
@@ -23,7 +23,6 @@ CREATE TABLE butacasVendidas(
     id_transaccion VARCHAR(10),
     id_usuario INT(10) REFERENCES usuario(id_usuario),
     nom_usuario VARCHAR(120) REFERENCES usuario(nombre),
-    email_usuario VARCHAR(210) REFERENCES usuario(email),
     tipo_entrada VARCHAR(20) REFERENCES precios(tipo),
     precio DECIMAL(4,2) REFERENCES precios(precio),
     pelicula VARCHAR (260), 

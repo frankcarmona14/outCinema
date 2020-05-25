@@ -1,5 +1,18 @@
-window.addEventListener("DOMContentLoaded", mostrarPrecio, true);
-document.getElementById("tipoEntrada").addEventListener("change", mostrarPrecio, true);
+window.addEventListener("DOMContentLoaded", mostrarTipoEntrada, true);
+
+async function mostrarTipoEntrada() {
+    tipos_de_entrada = JSON.parse(await leerTipoEntrada());
+    select = document.getElementById("tipoEntrada");
+
+    for (var i in tipos_de_entrada) {
+        option = document.createElement("option");
+        option.textContent = tipos_de_entrada[i];
+        select.add(option);
+    }
+
+    select.addEventListener("change", mostrarPrecio, true);
+    mostrarPrecio();
+}
 
 totalEntradas = 1;
 
@@ -24,8 +37,8 @@ async function mostrarPrecio() {
     precioMostrado.textContent = precioAsignado + "€ c/u";
     precioTotal.textContent = (precioAsignado * totalEntradas).toFixed(2) + "€";
 
-    console.log("Entrada seleccionada: " + entradaSelec);
-    console.log("Precio asignado en la BD: " + precioAsignado);
+    //console.log("Entrada seleccionada: " + entradaSelec);
+    //console.log("Precio asignado en la BD: " + precioAsignado);
 
 }
 
@@ -72,4 +85,31 @@ function leerPrecioAsignado(entradaSelec) {
         });
 
     return precioAsignadoBD;
+}
+
+function leerTipoEntrada() {
+    var comprobarTipoEntrada = new FormData();
+    comprobarTipoEntrada.append('comprobar', 'tipoEntrada');
+
+    var tiposEntradaBD = fetch('backend/verPrecio.php', {
+            method: 'POST',
+            body: comprobarTipoEntrada
+        })
+        .then(function (response) {
+            // console.log("Pasa PRIMER then.");
+            if (response.ok) {
+                return response.text();
+            } else {
+                throw "FETCH ERROR!";
+            }
+        })
+        .then(function (texto) {
+            return texto;
+        })
+        .catch(function (err) {
+            // console.log("Pasa CATCH.");
+            console.log(err);
+        });
+
+    return tiposEntradaBD;
 }
