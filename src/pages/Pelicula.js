@@ -32,8 +32,6 @@ async function mostrarElementos() {
       <div class="container__trailer">
         <iframe
           class="youtube-video"
-          width="560"
-          height="315"
           src="https://www.youtube.com/embed/${keyTrailer}?modestbranding=1"
           frameborder="0"
           allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
@@ -54,7 +52,7 @@ async function mostrarElementos() {
         <span>
           <i class="far fa-clock"></i>Duración: ${datos.runtime} min
         </span>
-        <h3>Sinopsis</h3>
+        <h3 class='sinop'>Sinopsis</h3>
         <p>
         ${datos.overview}
         </p>
