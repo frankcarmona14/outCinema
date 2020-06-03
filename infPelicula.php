@@ -87,6 +87,8 @@
         <div class="dia_item selected"></div>
         <div class="dia_item"></div>
         <div class="dia_item"></div>
+        <div class="dia_item"></div>
+        <div class="dia_item"></div>
       </div>
       <h3>Seleccione la hora de su función</h3>
       <div class="horario_hora">

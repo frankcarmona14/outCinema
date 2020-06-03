@@ -4,32 +4,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="../forms/style.css">
+    <title>Agregar nuevo tipo de Entrada</title>
 </head>
 
 <body>
+    <div class="form__login">
+        <div class="form-container">
+            <div class="loginEmail">
+                <h2>Agregar nuevo tipo de Entrada</h2>
+                <br><p>Introduce el nuevo tipo de entrada que quieres agreagar y establece su precio.</p>
+                <form action='agregarTipoEntrada.php' method='POST'>
+                    <br>
+                    <div class="formInput">
+                        <input type="text" name="tipo" placeholder="Tipo de entrada" required="required" class="formInput-field" />
+                        <p class="formInput-error" id=""></p>
+                    </div>
+                    <div class="formInput">
+                        <input type="number" name="precio" placeholder="Precio" required="required" class="formInput-field" />
+                        <p class="formInput-error" id=""></p>
+                    </div>
+                    <input type='submit' class="btn btn-green" name='agregar' value='Agregar'>
+                </form><br>
+                <a href='../panelAdministrativo.php'>Volver al Panel Administrativo</a>
+            </div>
+        </div>
+    </div>
+
     <?php
     require 'ConnectionDB.php';
-    ?>
-    <center>
-        <h1>Agregar nuevo tipo de entrada</h1>
-        <form action='agregarTipoEntrada.php' method='POST'>
-            <table border='1'>
-                <tr>
-                    <th>Tipo Entrada</th>
-                    <th>Precio (€)</th>
-                    <th>Agregar</th>
-                </tr>
-                <tr>
-                    <td><input type='text' name='tipo' autofocus></td>
-                    <td><input type='number' name='precio'></td>
-                    <td><input type='submit' name='agregar' value='Agregar'></td>
-                </tr>
-            </table>
-        </form><br><br>
-        <a href='../panelAdministrativo.php'>Volver al panel administrativo</a>
-    </center>
-    <?php
     if (isset($_POST['agregar'])) {
         $tipo = $_POST['tipo'];
         $precio = $_POST['precio'];

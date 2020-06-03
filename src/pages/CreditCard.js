@@ -73,20 +73,20 @@ formulario.inputNumero.addEventListener("keyup", (e) => {
   if (valorInput[0] == 4) {
     logoMarca.innerHTML = "";
     const imagen = document.createElement("img");
-    imagen.src = "img/visa.png";
+    imagen.src = "../img/pay_img/visa.png";
     logoMarca.appendChild(imagen);
-    delantera.style.backgroundImage = "url('img/background-visa.png')";
+    delantera.style.backgroundImage = "url('src/img/pay_img/background-visa.png')";
     delantera.style.color = "#fff";
-    trasera.style.backgroundImage = "url('img/background-visa.png')";
+    trasera.style.backgroundImage = "url('src/img/pay_img/background-visa.png')";
     trasera.style.color = "#fff";
   } else if (valorInput[0] == 5) {
     logoMarca.innerHTML = "";
     const imagen = document.createElement("img");
-    imagen.src = "img/mastercard.png";
+    imagen.src = "src/img/pay_img/mastercard.png";
     logoMarca.appendChild(imagen);
-    delantera.style.backgroundImage = "url('img/background-master.png')";
+    delantera.style.backgroundImage = "url('src/img/pay_img/background-master.png')";
     delantera.style.color = "#fff";
-    trasera.style.backgroundImage = "url('img/background-master.png')";
+    trasera.style.backgroundImage = "url('src/img/pay_img/background-master.png')";
     trasera.style.color = "#fff";
   }
   // volteamos la tarjeta

@@ -65,14 +65,13 @@
             <hr>
             <span>PANTALLA</span>
         </div><br>
-        <form action='backend/infoEntradas.php'>
+        <form action='realizarPago.php'>
             <input type='submit' id='pagar' value='Realizar Pago'>
         </form>
     </center>
 
     <script src='src/utils/elegirButacas.js'></script>
     <script src='src/utils/comprobarButacasVendidas.js'></script>
-    <script src='src/utils/enviarDatos.js'></script>
     <?php
     if ($_SESSION['elegirButacas'] <= 2) {
         echo "<script>window.location.reload();</script>";

@@ -29,7 +29,6 @@
             $fecha = $_SESSION['fecha'];
             $hora = $_SESSION['hora'];
             echo "<span>Gracias por su compra, " . $username . ", le adjuntamos la información de sus entradas:</span><br><br>";
-            echo "user_id: $user_id";
 
             require_once 'ConnectionDB.php';
 
