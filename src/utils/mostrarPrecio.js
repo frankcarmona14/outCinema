@@ -36,10 +36,6 @@ async function mostrarPrecio() {
 
     precioMostrado.textContent = precioAsignado + "€ c/u";
     precioTotal.textContent = (precioAsignado * totalEntradas).toFixed(2) + "€";
-
-    //console.log("Entrada seleccionada: " + entradaSelec);
-    //console.log("Precio asignado en la BD: " + precioAsignado);
-
 }
 
 add.addEventListener("click", function () {

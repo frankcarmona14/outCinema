@@ -1,9 +1,7 @@
 <?php
-
 session_start();
 
 $email = $_SESSION['user_email']; //Se recuperan los datos de email y codigo de acceso aleatorio guardados en la página anterior.
-$codigoRandom = $_SESSION['codigoRandom'];
 
 use PHPMailer\PHPMailer\PHPMailer;  //Para enviar el correo electrónico, se hace uso de la librería PHPMailer.
 use PHPMailer\PHPMailer\Exception;  //PHPMailer está pensada para enviar correos electrónicos desde un hosting real.
@@ -14,17 +12,23 @@ require 'PHPMailer/src/SMTP.php';
 
 switch ($_REQUEST['motivo']) {
     case "confirmarCuenta":
+        $codigoRandom = $_SESSION['codigoRandom'];
         $asunto = "Confirmación de Cuenta";
         $mensaje = "Su código de confirmación de cuenta de OutCinema es: <b>" . $codigoRandom . "</b><br>Si usted no se ha registrado en nuestra aplicación, le ofrecemos una disculpa y le rogamos hacer caso omiso a este correo.";
         $redirect = "validarConfirmacion.php";
         break;
     case "cambiarPassword":
+        $codigoRandom = $_SESSION['codigoRandom'];
         $asunto = "Cambio de Contraseña";
         $mensaje = "Su código de acceso provisional es: <b>" . $codigoRandom . "</b>";
         $redirect = "passwordProvisional.php";
         break;
+    case "enviarEntradas":
+        $asunto = "Confirmación de Compra";
+        $mensaje = "A continuación, le adjuntamos un PDF con toda la información correspondiente a la compra de sus entradas.";
+        $redirect = "infoEntradas.php?resumen";
+        break;
 }
-
 $mail = new PHPMailer(true);
 
 try {
@@ -45,14 +49,12 @@ try {
     $mail->CharSet = 'UTF-8'; //Se establece UTF-8 como sistema de codificación de texto para el correo, así permite enviar ñ y letras con tilde.
     $mail->Subject = $asunto; //El asunto del correo.
     $mail->Body    = $mensaje; //El mensaje en sí. En este caso, el código aleatorio que generamos.
-
+    if ($_REQUEST['motivo'] == "enviarEntradas") {
+        $mail->AddAttachment("EntradasConfirmadas/" . $_SESSION['id_transaccion'] . ".pdf");
+    }
     $mail->send(); //Se envía el correo.
-    //LLegados a este punto, significa que todo ha salido bien, por lo tanto, se muestra en un mensaje y se redirecciona al formulario de validación.
-    /*echo "<script>";
-    echo "alert('Código de acceso enviado a la dirección " . $email . ".');";
-    echo "window.location.href='passwordProvisional.php';";
-    echo "</script>"; */
     header("Location: $redirect");
 } catch (Exception $e) {
     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    echo $email;
 }

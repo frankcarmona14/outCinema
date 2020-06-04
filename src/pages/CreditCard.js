@@ -73,7 +73,7 @@ formulario.inputNumero.addEventListener("keyup", (e) => {
   if (valorInput[0] == 4) {
     logoMarca.innerHTML = "";
     const imagen = document.createElement("img");
-    imagen.src = "../img/pay_img/visa.png";
+    imagen.src = "src/img/pay_img/visa.png";
     logoMarca.appendChild(imagen);
     delantera.style.backgroundImage = "url('src/img/pay_img/background-visa.png')";
     delantera.style.color = "#fff";

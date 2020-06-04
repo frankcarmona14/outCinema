@@ -13,20 +13,6 @@
 <body>
     <div class="form__login">
         <div class="form-container">
-            <div class="loginSocial">
-                <div class="loginSocial-facebook">
-                    <a href="#" class="btn btn-fcbk">
-                        <i class="fab fa-facebook-f fa-lg icons"></i>
-                        <span>Inicia sesión con Facebook</span>
-                    </a>
-                </div>
-                <div class="loginSocial-facebook">
-                    <a href="#" class="btn btn-ggl">
-                        <i class="fab fa-google fa-lg icons"></i>
-                        <span>Inicia sesión con Google</span>
-                    </a>
-                </div>
-            </div>
             <div class="loginEmail">
                 <form action='backend/procesar_registro.php' method='POST'>
                     <div class="formInput">

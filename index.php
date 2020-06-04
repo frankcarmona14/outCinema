@@ -22,7 +22,7 @@
       $cookies = new Cookies();
       $email  = $cookies->desencriptar($_COOKIE['Email'], 'k123'); //Las cookies se almacenan encriptadas, por lo cual, es necesario desencriptarlas
       $password = $cookies->desencriptar($_COOKIE['Password'], 'k123'); //Para poder hacer una validación comparando con los datos de la BD.
-
+      
       require_once 'backend/ConnectionDB.php';
 
       $query = $pdo->prepare("SELECT * FROM usuario;");
