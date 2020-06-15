@@ -446,7 +446,6 @@ body {
 }
 
 .horario_entradas select:focus {
-  outline: rgb(4, 4, 4);
   box-shadow: 1px 7px 10px -5px rgba(90, 116, 148, 0.3);
 }
 

@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="src/styles/style.css">
     <title>Elegir Butacas</title>
     <style>
         input[type='image'] {
@@ -12,19 +13,21 @@
             margin: 0 -5px 0 0;
         }
 
-        .salaCine {
-            width: 32%;
-        }
-
-        .salaCine hr {
-            height: 6px;
-            background-color: #000;
-        }
-
         #estadoButaca {
             height: 25px;
             width: 20px;
             margin: 5px 25px -5px 0;
+        }
+
+        .pantalla{
+            display: flex;
+            font-weight: bolder;
+            justify-content: center;
+            align-items: center;
+            background-color: #4682b4;
+            width: 60vw;
+            color: gainsboro;
+            height: 30px;
         }
     </style>
     <?php
@@ -54,7 +57,7 @@
                 <span id='hora'></span><br>
                 <span id='numEntradas'></span><br><br>
             </div>
-            <div>
+            <div class="info">
                 <span>Disponibles: </span><img src='src/img/butacaDisponible.png' id='estadoButaca'>
                 <span>Ocupadas: </span><img src='src/img/butacaOcupada.png' id='estadoButaca'>
                 <span>Seleccionadas: </span><img src='src/img/butacaSeleccionada.png' id='estadoButaca'>
@@ -62,11 +65,10 @@
             <?php
             require "backend/imprimirButacas.php";
             ?>
-            <hr>
-            <span>PANTALLA</span>
+            <span class="pantalla">PANTALLA</span>
         </div><br>
         <form action='realizarPago.php'>
-            <input type='submit' id='pagar' value='Realizar Pago'>
+            <input type='submit' id='pagar' class="btn btn-continuar" value='Seleccionar'>
         </form>
     </center>
 
