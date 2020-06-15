@@ -98,7 +98,7 @@
     </head>
     <body>");
         $mpdf->WriteHTML("<span>Confirmación&nbsp;&nbsp; - &nbsp;&nbsp;" . date("d") . "/" . date("m") . "/" . date("Y") . "</span><br><br>");
-        $mpdf->WriteHTML("<span>Agradecemos mucho tu preferencia " . $username . ", a continuación, te adjuntamos la información de tu compra: </span>");
+        $mpdf->WriteHTML("<span>Agradecemos mucho tu preferencia " . $username . ". A continuación, te adjuntamos la información de tu compra: </span>");
         $mpdf->WriteHTML("<img align='center' src='data:image/png;base64,$imageData'>");
         $mpdf->WriteHTML("<p><b>" . $id_transaccion . "</b></p>");
         $mpdf->WriteHTML("<h1>" . $pelicula . "</h1>");
