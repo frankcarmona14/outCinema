@@ -44,7 +44,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php echo "<p>Gracias por tu compra, " . $username . ", a continuación, te adjuntamos la información de sus entradas:</p><br>";
+                    <?php echo "<p>Gracias por tu compra, " . $username . ". A continuación, te adjuntamos la información de sus entradas:</p><br>";
                     echo "<h3>$pelicula</h3>";
                     echo "<b>$fecha</b><br><br>";
                     if ($query->rowCount() > 0) {
