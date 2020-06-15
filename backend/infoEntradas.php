@@ -57,7 +57,7 @@
                         }
                         echo "</tbody></table>";
                     }
-                    $textqr = "https://192.168.1.35/outCinema/backend/escanearEntradas.php?id=$id_transaccion";
+                    $textqr = "https://192.168.1.41/outCinema/backend/escanearEntradas.php?id=$id_transaccion";
                     $sizeqr = "200";
 
                     use Endroid\QrCode\QrCode;
@@ -71,7 +71,7 @@
                     echo '<img src="data:image/png;base64,' . $imageData . '">';
                     echo "<br><br>Localizador: <b>$id_transaccion</b><br><br>";
                     ?>
-                    <a id='verPDF' target="_blank"><button class="btn btn-green" name='verPDF'>Ver entradas en PDF</button></a><br>
+                    <a id='verPDF' href='EntradasConfirmadas/<?php echo $id_transaccion; ?>.pdf' target="_blank"><button class="btn btn-green" name='verPDF'>Ver entradas en PDF</button></a><br>
                     <br><a href='../index.php'>Volver al inicio</a><br><br>
         </div>
     </center>
@@ -118,8 +118,7 @@
         $mpdf->WriteHTML("<b>Código del justificante: </b>Acércate al personal de control de acceso e indícales el código alfanumérico adjunto debajo del código QR escaneable.");
         $mpdf->WriteHTML("</body></html>");
         $mpdf->Output('EntradasConfirmadas/' . $id_transaccion . '.pdf', 'F');
-        echo "<script>document.getElementById('verPDF').href = 'EntradasConfirmadas/$id_transaccion.pdf';";
-        echo "window.location.href='enviarCorreo.php?motivo=enviarEntradas';</script>";
+        echo "<script>window.location.href='enviarCorreo.php?motivo=enviarEntradas';</script>";
     }
     ?>
 </body>

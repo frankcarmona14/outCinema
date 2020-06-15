@@ -106,9 +106,6 @@
         }
         ?>
         <li><a href="index.php" class="active">Cartelera</a></li>
-        <li><a href="#">Estrenos</a></li>
-        <li><a href="#">Proximamente</a></li>
-        <li><a href="#">Promos</a></li>
       </ul>
       <div class="menu__user">
         <?php
