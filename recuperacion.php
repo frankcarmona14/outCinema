@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="forms/style.css" />
     <title>Recuperación de Contraseña</title>
+    <script src="forms/validarFormularios.js"></script>
 </head>
 
 <body>
@@ -18,7 +19,7 @@
                         <input type="email" name="email" id="email" placeholder="Tu email" required="required" class="formInput-field" />
                         <p class="formInput-error" id="emailE"></p>
                     </div>
-                    <input type='submit' class="btn btn-green" name='Enviar' value='Enviar'>
+                    <input type='submit' id="enviar" class="btn btn-green" name='Enviar' value='Enviar'>
                 </form><br>
                 <a href='login.php'>Iniciar Sesión</a><br>
             </div>

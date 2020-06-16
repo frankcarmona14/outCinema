@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../forms/style.css">
     <title>Document</title>
+    <script src="../forms/validarFormularios.js"></script>
 </head>
 
 <body>
@@ -19,15 +20,15 @@
                 <form action='cambiarPassword.php' method='POST'>
                     <div class="formInput">
                         <span>Por favor, establezca una nueva contraseña para su cuenta: </span><br><br>
-                        <input type="password" name="pass" required="required" class="formInput-field" /><br>
-                        <p class="formInput-error" id=""></p>
+                        <input id="pass1" type="password" name="pass" required="required" class="formInput-field" /><br>
+                        <p id="pass1E" class="formInput-error" id=""></p>
                     </div>
                     <div class="formInput">
                         <span>Repita la contraseña: </span><br><br>
-                        <input type="password" name="newPass" required="required" class="formInput-field" /><br>
-                        <p class="formInput-error" id=""></p>
+                        <input id="pass2" type="password" name="newPass" required="required" class="formInput-field" /><br>
+                        <p id="pass2E" class="formInput-error" id=""></p>
                     </div>
-                    <input type='submit' name='cambiar' class="btn btn-green" value='Cambiar Contraseña'>
+                    <input id="cambiarPass" type='submit' name='cambiar' class="btn btn-green" value='Cambiar Contraseña'>
                 </form>
             </div>
         </div>

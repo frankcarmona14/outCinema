@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="src/styles/style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Sriracha&display=swap" rel="stylesheet">
   <title>OutCinema</title>
   <script>
     sessionStorage.clear();
@@ -123,6 +124,45 @@
       </div>
     </nav>
   </header>
+  <section class="slider">
+    <div>
+      <ul>
+      <li>
+          <div class="slide der">
+          <h1>Descubre nuestra cartelera y proximos Estrenos</h1>
+            <p>Compra tus entradas </p>
+          </div>
+        </li>
+        <li>
+          <div class="slide">
+            <h1>!No te pierdas nada! </h1>
+            <p>Visita nuestras redes sociales para mantenerte informado.</p>
+          </div>
+        </li>
+        <li>
+        <div class="slide der">
+            <h1>Pronto estaremos de vuelta </h1>
+            <p>#Juntos por el cine</p>
+          </div>
+        </li>
+        
+      </ul>
+
+    </div>
+  </section>
+  <section class="wellcome">
+    <div class="group-image">
+        <h1>Bienvenido a OutCinema, disfruta de nuestro contenido.</h1>
+    </div>
+    <div class="group-image image">
+        <img src="src/img/imgCine.jpg" alt="wellcome">
+    </div>
+  </section>
+  <section class="ribbon">
+    <h1>Cartelera</h1>
+    <img src="src/img/ribbon.png" alt="ribbon">
+
+  </section>
   <section class="main">
     <div class="movies__container" id="moviesContainer"></div>
   </section>

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../forms/style.css">
     <title>Cambio de Contraseña</title>
+    <script src="../forms/validarFormularios.js"></script>
 </head>
 
 <body>
@@ -21,10 +22,10 @@
 
                 <form action='passwordProvisional.php' method='POST'>
                     <div class="formInput">
-                        <input type="text" name="codigo" placeholder="Tu código" required="required" class="formInput-field" />
-                        <p class="formInput-error" id=""></p>
+                        <input id="codigo" type="text" name="codigo" placeholder="Tu código" required="required" class="formInput-field" />
+                        <p id="codigoE" class="formInput-error" id=""></p>
                     </div>
-                    <input type='submit' class="btn btn-green" name='enviarCodigo' value='Enviar Código'>
+                    <input id="cambiarCodigo" type='submit' class="btn btn-green" name='enviarCodigo' value='Enviar Código'>
                 </form><br>
                 <a href='../recuperacion.php'>¿No has recibido ningún correo? ¡Vuelve a intentarlo!</a>
             </div>
