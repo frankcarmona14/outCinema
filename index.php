@@ -135,14 +135,14 @@
         </li>
         <li>
           <div class="slide">
-            <h1>!No te pierdas nada! </h1>
+            <h1>¡No te pierdas nada!</h1>
             <p>Visita nuestras redes sociales para mantenerte informado.</p>
           </div>
         </li>
         <li>
         <div class="slide der">
-            <h1>Pronto estaremos de vuelta </h1>
-            <p>#Juntos por el cine</p>
+            <h1>Pronto estaremos de vuelta.</h1>
+            <p>#JuntosPorElCine</p>
           </div>
         </li>
         
